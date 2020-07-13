@@ -1,0 +1,14 @@
+ <form class="basic-form" [formGroup]="form" (submit)="onSubmit()">
+    <div fxLayout="row wrap">
+        <% for (let attribute of attributes) { %>
+            <mat-form-field>
+                <input matInput type="<% if (attribute.type === 'string') { %>text<% }%><% if (attribute.type === 'number') { %>number<% }%>"
+                    placeholder="<%= capitalize(attribute.label) %>"  formControlName="<%= camelize(attribute.name) %>">
+            </mat-form-field>
+        <% } %>
+            <a mat-button id="link-close" [routerLink]="['/<%= underscore(namePluralized) %>']">Cancelar</a>
+            <button mat-raised-button type="submit" color="primary">Gravar</button>
+    </div>
+</form>
+
+

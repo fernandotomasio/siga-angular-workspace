@@ -1,0 +1,47 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { <%= classify(name) %>DetailPageComponent } from './<%= dasherize(name) %>-detail-page.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { <%= classify(name) %>DetailComponent } from '../../<%= dasherize(name) %>-detail/<%= dasherize(name) %>-detail.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DemoMaterialModule } from '../../../demo-material-module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+
+describe('<%= classify(name) %>DetailPageComponent', () => {
+  let component: <%= classify(name) %>DetailPageComponent;
+  let fixture: ComponentFixture<<%= classify(name) %>DetailPageComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ RouterTestingModule, DemoMaterialModule, 
+        FlexLayoutModule, HttpClientModule ],
+      declarations: [<%= classify(name) %>DetailPageComponent, <%= classify(name) %>DetailComponent]
+    })
+    fixture = TestBed.createComponent(<%= classify(name) %>DetailPageComponent)
+    component = fixture.componentInstance
+  });
+
+  it('should contains <%= dasherize(name) %> detail page title', () => {
+    fixture.detectChanges();
+    const html: HTMLElement = fixture.nativeElement;
+    
+    expect(html.textContent).toContain('Detalhes de <%= capitalize(title) %>')
+   });
+
+
+  it('should contains add link to delete <%= dasherize(name) %>', () => {
+   fixture.detectChanges();
+   const html: HTMLElement = fixture.nativeElement;
+   expect(html.querySelector('#link-remove').textContent).toContain('Remover')
+  });
+  it('should contains add link to edit <%= dasherize(name) %>', () => {
+    fixture.detectChanges();
+    const html: HTMLElement = fixture.nativeElement;
+    expect(html.querySelector('#link-edit').textContent).toContain('Editar')
+   });
+   it('should contains add link to close page', () => {
+    fixture.detectChanges();
+    const html: HTMLElement = fixture.nativeElement;
+    expect(html.querySelector('#link-close').textContent).toContain('Fechar')
+   });
+});

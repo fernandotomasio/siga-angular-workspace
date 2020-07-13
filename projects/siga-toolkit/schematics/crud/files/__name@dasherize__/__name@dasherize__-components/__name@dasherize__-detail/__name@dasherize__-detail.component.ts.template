@@ -1,0 +1,20 @@
+import { Component, OnInit, Input } from '@angular/core';
+import { <%= classify(name) %>Response } from '../../../resource/response/<%= name %>-response';
+import { <%= classify(name) %>Service } from '../../../core/<%= name %>.service';
+
+@Component({
+  selector: 'app-<%= name %>-detail',
+  templateUrl: './<%= name %>-detail.component.html'
+})
+export class <%= classify(name) %>DetailComponent implements OnInit {
+  @Input() oid: number
+  data: <%= classify(name) %>Response
+
+  constructor(private service: <%= classify(name) %>Service) { }
+
+  ngOnInit() {
+    this.service.find(this.oid)
+    .subscribe(data => this.data = data)
+  }
+
+}

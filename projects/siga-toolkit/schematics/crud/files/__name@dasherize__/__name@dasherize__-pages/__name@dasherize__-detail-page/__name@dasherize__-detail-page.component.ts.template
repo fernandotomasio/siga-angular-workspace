@@ -1,0 +1,23 @@
+import { Component, OnInit, HostListener } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+@Component({
+  selector: 'app-<%= dasherize(name) %>-detail-page',
+  templateUrl: './<%= dasherize(name) %>-detail-page.component.html'
+})
+export class <%= classify(name) %>DetailPageComponent implements OnInit {
+
+  constructor(private router: Router,
+    private route: ActivatedRoute) { }
+  oid: number;
+  
+  ngOnInit() {
+    this.oid = this.route.snapshot.params['oid']
+  }
+  
+  @HostListener('document:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent): void {
+    if(event.keyCode == 27)
+      this.router.navigate(['/<%= underscore(namePluralized) %>'])
+  }
+}

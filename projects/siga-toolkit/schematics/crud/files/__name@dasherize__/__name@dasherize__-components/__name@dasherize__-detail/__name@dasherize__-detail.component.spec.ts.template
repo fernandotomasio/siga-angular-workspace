@@ -1,0 +1,51 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { <%= classify(name) %>DetailComponent } from './<%= dasherize(name) %>-detail.component';
+import { HttpClientModule } from '@angular/common/http';
+import { of } from 'rxjs';
+import { <%= classify(name) %>Service } from '../../core/<%= dasherize(name) %>.service';
+import { <%= classify(name) %>Response } from '../../resource/response/<%= dasherize(name) %>-response';
+
+describe('<%= classify(name) %>DetailComponent', () => {
+  let component: <%= classify(name) %>DetailComponent;
+  let fixture: ComponentFixture<<%= classify(name) %>DetailComponent>;
+  let spyService: jasmine.SpyObj<<%= classify(name) %>Service>
+
+
+  beforeEach(() => {
+    const spy = jasmine.createSpyObj('<%= classify(name) %>Service', ['find'])
+    
+    TestBed.configureTestingModule({
+      imports: [ HttpClientModule ],
+      declarations: [ <%= classify(name) %>DetailComponent ],
+      providers: [ { provide: <%= classify(name) %>Service, useValue: spy}]
+    })
+
+    fixture = TestBed.createComponent(<%= classify(name) %>DetailComponent);
+    component = fixture.componentInstance;
+
+  });
+
+  it('should create <%= dasherize(name) %> detail', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render <%= dasherize(name) %> detail', () => {
+    const expectedData: <%= classify(name) %>Response = new <%= classify(name) %>Response();
+    expectedData.fullName = "fake fullname"
+    expectedData.shortName = "fake shortname"
+    expectedData.oid = 1435
+
+    spyService = TestBed.get(<%= classify(name) %>Service)
+    spyService.find.and.returnValue(of(expectedData))
+
+    fixture.detectChanges()
+
+    const html: HTMLElement = fixture.nativeElement
+    expect(html.textContent).toContain(expectedData.fullName)
+    expect(html.textContent).toContain(expectedData.shortName)
+    
+    expect(component).toBeTruthy();
+  });
+
+});

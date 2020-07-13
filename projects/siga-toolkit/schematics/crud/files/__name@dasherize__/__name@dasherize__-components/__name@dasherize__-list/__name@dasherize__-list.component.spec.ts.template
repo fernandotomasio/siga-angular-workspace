@@ -1,0 +1,109 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { <%= classify(name) %>ListComponent } from './<%= dasherize(name) %>-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { <%= classify(name) %>SearchComponent } from '../<%= dasherize(name) %>-search/<%= dasherize(name) %>-search.component';
+import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
+import { <%= classify(name) %>Service } from '../../core/<%= dasherize(name) %>.service';
+import { DemoMaterialModule } from '../../demo-material-module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+describe('<%= classify(name) %>ListComponent', () => {
+  let component: <%= classify(name) %>ListComponent;
+  let fixture: ComponentFixture<<%= classify(name) %>ListComponent>;
+  let spyService: jasmine.SpyObj<<%= classify(name) %>Service>
+
+
+  beforeEach(() => {
+    const spy = jasmine.createSpyObj('<%= classify(name) %>Service', ['findAll'])
+
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule, DemoMaterialModule, 
+        FlexLayoutModule, ReactiveFormsModule],
+      declarations: [<%= classify(name) %>ListComponent, <%= classify(name) %>SearchComponent],
+      providers: [{ provide: <%= classify(name) %>Service, useValue: spy }]
+    })
+
+    fixture = TestBed.createComponent(<%= classify(name) %>ListComponent);
+    component = fixture.componentInstance;
+  });
+
+  it('should create <%= dasherize(name) %> list', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render <%= dasherize(name) %> data list', () => {
+    let fakeData = {
+      data: [
+        {
+          oid: 1, fullName: "fake fullname 1", shortName: "fake shortname 1"
+        },
+        {
+          oid: 2, fullName: "fake fullname 2", shortName: "fake shortname 2"
+        },
+        {
+          oid: 3, fullName: "fake fullname 3", shortName: "fake shortname 3"
+        },
+        {
+          oid: 4, fullName: "fake fullname 4", shortName: "fake shortname 4"
+        },
+        {
+          oid: 5, fullName: "fake fullname 5", shortName: "fake shortname 5"
+        }
+      ]
+    }
+    spyService = TestBed.get(<%= classify(name) %>Service)
+    spyService.findAll.and.returnValue(of(fakeData));
+
+    fixture.autoDetectChanges();
+
+    const html: HTMLElement = fixture.nativeElement;
+    expect(html.textContent).toContain("fake fullname 4")
+
+  });
+
+
+  it('should raise detail event', () => {
+    let actionEvent = null
+    component.action.subscribe(event => actionEvent = event)
+
+    let fakeData = {
+      data: [
+        {
+          oid: 1, fullName: "fake fullname 1", shortName: "fake shortname 1"
+        }
+      ]
+    }
+    spyService = TestBed.get(<%= classify(name) %>Service)
+    spyService.findAll.and.returnValue(of(fakeData));
+
+    fixture.autoDetectChanges();
+    let button = fixture.debugElement.query(By.css('.btn-detail'))
+    button.triggerEventHandler('click', null)
+  
+    expect(actionEvent.action).toBe('detail')
+  });
+
+  it('should raise edit event', () => {
+    let actionEvent = null
+    component.action.subscribe(event => actionEvent = event)
+
+    let fakeData = {
+      data: [
+        {
+          oid: 1, fullName: "fake fullname 1", shortName: "fake shortname 1"
+        }
+      ]
+    }
+    spyService = TestBed.get(<%= classify(name) %>Service)
+    spyService.findAll.and.returnValue(of(fakeData));
+
+    fixture.autoDetectChanges();
+    let button = fixture.debugElement.query(By.css('.btn-edit'))
+    button.triggerEventHandler('click', null)
+  
+    expect(actionEvent.action).toBe('edit')
+  });
+});

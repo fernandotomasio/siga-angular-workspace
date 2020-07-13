@@ -1,0 +1,76 @@
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { <%= classify(name) %>Search } from '../../../search/<%= dasherize(name) %>-search';
+import { <%= classify(name) %>Response } from '../../../resource/response/<%= dasherize(name) %>-response';
+import { <%= classify(name) %>Service } from '../../../core/<%= dasherize(name) %>.service';
+import { PageEvent, Sort } from '@angular/material';
+import { environment } from 'src/environments/environment';
+
+@Component({
+  selector: '[app-<%= dasherize(name) %>-list]',
+  templateUrl: './<%= dasherize(name) %>-list.component.html'
+})
+export class <%= classify(name) %>ListComponent implements OnInit {
+  @Output() action = new EventEmitter<any>()
+  paginateOptions = []
+
+  totalCount: number
+  filteredCount: number
+  columnsToDisplay = [<%= commaSeparatedAttributes(attributes) %>, 'acoes']
+  paginate = true;
+
+  search: <%= classify(name) %>Search = new <%= classify(name) %>Search()
+  dataList: <%= classify(name) %>Response[]
+
+  constructor(private service: <%= classify(name) %>Service) {
+  }
+
+  ngOnInit() {
+    this.search.size = environment.paginateDefaultSize
+    this.search.paginate = this.paginate
+    this.paginateOptions = environment.paginateOptions
+    this.refresh();
+  }
+
+  refresh() {
+    this.service.findAll(this.search).subscribe(response => {
+      this.dataList = response.data
+      this.totalCount = response.totalCount
+      this.filteredCount = response.filteredCount
+    })
+  }
+
+  onPageChange(event: PageEvent) {
+    this.search.size = event.pageSize
+    this.search.page = event.pageIndex
+    this.refresh()
+  }
+
+  onSortChange(event: Sort) {
+   
+    switch(event.direction){
+      case 'asc':
+        this.search.orderBy = [event.active]
+      break
+      case 'desc':
+        this.search.orderBy = ['-' + event.active]
+      break
+      default:
+        this.search.orderBy = []
+    }
+   
+    this.refresh()
+  }
+
+  raiseAction(action: string, oid: number) {
+    this.action.emit({ 
+      action: action, 
+      oid: oid 
+    })
+  }
+
+  onSearchChange(event: <%= classify(name) %>Search){
+    this.search = Object.assign(this.search, event)
+    console.log(this.search)
+    this.refresh()
+  }
+}

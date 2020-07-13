@@ -1,0 +1,26 @@
+
+
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { <%= classify(name) %>Routes } from './<%= dasherize(name) %>.routing';
+import { MaterialModule } from '../material-module';
+import { <%= classify(name) %>DetailPageComponent } from './<%= dasherize(name) %>-pages/<%= dasherize(name) %>-detail-page/<%= dasherize(name) %>-detail-page.component';
+import { <%= classify(name) %>ListComponent } from './<%= dasherize(name) %>-components/<%= dasherize(name) %>-list/<%= dasherize(name) %>-list.component';
+import { <%= classify(name) %>DetailComponent } from './<%= dasherize(name) %>-components/<%= dasherize(name) %>-detail/<%= dasherize(name) %>-detail.component';
+import { <%= classify(name) %>FormComponent } from './<%= dasherize(name) %>-components/<%= dasherize(name) %>-form/<%= dasherize(name) %>-form.component';
+import { <%= classify(name) %>IndexPageComponent } from './<%= dasherize(name) %>-pages/<%= dasherize(name) %>-index-page/<%= dasherize(name) %>-index-page.component';
+import { <%= classify(name) %>EditPageComponent } from './<%= dasherize(name) %>-pages/<%= dasherize(name) %>-edit-page/<%= dasherize(name) %>-edit-page.component';
+import { <%= classify(name) %>SearchComponent } from './<%= dasherize(name) %>-components/<%= dasherize(name) %>-search/<%= dasherize(name) %>-search.component';
+
+@NgModule({
+  declarations: [<%= classify(name) %>DetailPageComponent, <%= classify(name) %>IndexPageComponent, <%= classify(name) %>EditPageComponent, <%= classify(name) %>ListComponent, <%= classify(name) %>DetailComponent, <%= classify(name) %>FormComponent, <%= classify(name) %>SearchComponent],
+  imports: [
+    CommonModule,
+    MaterialModule, 
+    RouterModule.forChild(<%= classify(name) %>Routes),
+    ReactiveFormsModule, FormsModule
+  ]
+})
+export class <%= classify(name) %>Module { }

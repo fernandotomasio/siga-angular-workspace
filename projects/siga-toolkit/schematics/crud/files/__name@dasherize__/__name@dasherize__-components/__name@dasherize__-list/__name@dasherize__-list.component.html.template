@@ -1,0 +1,36 @@
+
+<app-<%= dasherize(name) %>-search (searchChange)="onSearchChange($event)"  [advanced]="isToogleSearch" ></app-<%= dasherize(name) %>-search>
+<table class="table" mat-table [dataSource]="dataList" matSort  (matSortChange)="onSortChange($event)" >
+  <% for (let attribute of attributes) { %>
+    <ng-container matColumnDef="<%= camelize(attribute.name) %>">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> <%= capitalize(attribute.label) %></th>
+      <td mat-cell *matCellDef="let item"> {{item.<%= camelize(attribute.name) %>}} </td>
+    </ng-container>
+  <% } %>
+  
+  <ng-container matColumnDef="acoes">
+    <th mat-header-cell *matHeaderCellDef> Ações </th>
+    <td mat-cell *matCellDef="let item"> 
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item (click)="raiseAction('detail', item.oid)" >
+              Detalhes
+          </button>
+          <button mat-menu-item (click)="raiseAction('edit', item.oid)">
+            Editar
+          </button>
+          <button mat-menu-item (click)="raiseAction('remove', item.oid)">
+            Remover
+          </button>
+        </mat-menu>
+            <button mat-icon-button [matMenuTriggerFor]="appMenu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+</table>
+
+<mat-paginator [length]="filteredCount" [pageSize]="paginateDefaultSize" 
+    [pageSizeOptions]="paginateOptions" showFirstLastButtons (page)="onPageChange($event)"></mat-paginator>

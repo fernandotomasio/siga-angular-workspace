@@ -5,7 +5,15 @@
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12"
   },
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
+    "copy:schemas": "cp --parents schematics/*/schema.json ../../dist/siga-toolkit/",
+    "copy:files": "cp -r --parents -p schematics/*/files/** ../../dist/siga-toolkit/",
+    "copy:collection": "cp schematics/collection.json ../../dist/siga-toolkit/schematics/collection.json",
+    "postbuild": "npm run copy:schemas && npm run copy:files && npm run copy:collection"
+  },
   "dependencies": {
     "tslib": "^1.10.0"
-  }
+  },
+  "schematics": "./schematics/collection.json"
 }

@@ -1,0 +1,19 @@
+<form class="basic-form" [formGroup]="form" (submit)="onSubmit()">
+    <div fxLayout="row wrap">
+        <mat-form-field  *ngIf="!advanced">
+            <input matInput type='text' class="form-control" formControlName="q" placeholder='Digite um termo para pesquisa...' />
+            <a mat-button matSuffix mat-icon-button aria-label="Expandir" (click)="changeMode()"  matTooltip="Expandir para pesquisa avançada" >
+                <mat-icon>launch</mat-icon>
+            </a>
+        </mat-form-field>
+
+         <% for (let parameter of searchParameters) { %>
+            <mat-form-field *ngIf="advanced">
+                <input matInput type="<% if (parameter.type === 'string') { %>text<% }%><% if (parameter.type === 'number') { %>number<% }%>"
+                    class="form-control" formControlName="<%= camelize(parameter.name) %>"  placeholder='<%= capitalize(parameter.label) %>...' />
+            </mat-form-field>
+        <% } %>
+
+        <button mat-raised-button type="submit" color="primary"  *ngIf="advanced">Buscar</button>
+    </div>
+</form>

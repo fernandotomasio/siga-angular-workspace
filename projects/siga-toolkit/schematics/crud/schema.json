@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "SchematicsCrud",
+  "title": "Crud Scaffold Schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "The name of the entity using dash separator.",
+      "type": "string",
+      "$default":{
+          "$source": "argv",
+          "index": 0
+      },
+      "x-prompt": "whats the entity name? Ps.: use dash separator"
+
+    },
+    "namePluralized": {
+      "description": "The pluralized name of the entity using dash separator.",
+      "type": "string",
+      "x-prompt": "whats the entity pluralized name? Ps.: use dash separator"
+    },
+    "title": {
+      "description": "The title of the entity in cursive.",
+      "type": "string",
+      "x-prompt": "whats the title of the entity in cursive form?"
+    },
+    "titlePluralized": {
+      "description": "The pluralized title of the entity in cursive.",
+      "type": "string",
+      "x-prompt": "whats the pluralized title of the entity in cursive form?"
+    },
+    "attributes": {
+      "description": "The attributes of the model.",
+      "type": "string",
+      "x-prompt": "whats the model attributes? Inform separated by commas. Use this format: name:type:nullable:label. Ex.: attribute1:number:true:Label of attribute1, attribute2:string:false:Label of attribute2"
+    },
+    "searchParameters": {
+      "description": "The search parameters.",
+      "type": "string",
+      "x-prompt": "whats the model search parameters? Inform separated by commas."
+    },
+    "resource": {
+      "description": "The name of the resource endpoint.",
+      "type": "string",
+      "x-prompt": "whats the name of the rest resource endpoint?"
+    }
+  },
+  "required": ["name", "namePluralized", "title", "titlePluralized"]
+}

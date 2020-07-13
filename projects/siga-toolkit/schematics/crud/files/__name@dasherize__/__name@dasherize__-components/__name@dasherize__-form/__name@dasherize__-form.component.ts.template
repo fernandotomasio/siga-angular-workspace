@@ -1,0 +1,44 @@
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { <%= classify(name) %>Response } from '../../../resource/response/<%= dasherize(name) %>-response';
+import { <%= classify(name) %>Service } from '../../../core/<%= dasherize(name) %>.service';
+
+@Component({
+  selector: 'app-<%= dasherize(name) %>-form',
+  templateUrl: './<%= dasherize(name) %>-form.component.html'
+})
+export class <%= classify(name) %>FormComponent implements OnInit {
+  @Input() oid: number
+  form: FormGroup
+  @Output() saved = new EventEmitter<<%= classify(name) %>Response>()
+  
+  constructor(private service: <%= classify(name) %>Service,
+    private fb: FormBuilder) { }
+
+  ngOnInit() {
+    this.form = this.fb.group({
+    <% for (let attribute of attributes) { %>
+      <%= camelize(attribute.name) %>: this.fb.control(''<% if (!attribute.nullable) { %>, Validators.required<% }%>),
+    <% } %>
+    })
+    
+    if (this.oid) {
+      this.service.find(this.oid)
+        .subscribe(data =>
+          this.form.patchValue({
+        <% for (let attribute of attributes) { %>
+            <%= camelize(attribute.name) %>: data.<%= camelize(attribute.name) %>,
+        <% } %>
+          }))
+    }
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      this.service.save(this.form.value).subscribe(response => {
+        this.saved.emit(response)
+      });
+    }
+  }
+
+}

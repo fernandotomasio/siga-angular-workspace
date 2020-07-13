@@ -1,0 +1,6 @@
+export class <%= classify(name) %>Request {
+    oid: number
+<% for (let attribute of attributes) { %>
+    <%= camelize(attribute.name) %><% if (attribute.nullable) { %>?<% }%>: <%= attribute.type %>
+<% } %>
+}

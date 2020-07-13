@@ -1,0 +1,43 @@
+import { HttpParams } from "@angular/common/http";
+
+export abstract class BaseSearch {
+    page?: number;
+    size?: number;
+    paginate?: boolean;
+    orderBy?: string []
+
+
+    protected abstract buildSearchParameters(params:HttpParams): HttpParams
+
+    queryParameters(): HttpParams{
+        let params = new HttpParams()
+        params = this.buildSearchParameters(params);
+        params = this.buildPaginateParameters(params);   
+        params = this.buildOrderParameters(params);
+        return params;        
+    }
+
+    private buildPaginateParameters(params:HttpParams): HttpParams {
+            if(this.paginate){
+               params = params.append("paginate", this.paginate.toString())
+            }
+    
+            if(this.size){
+                params = params.append("size", this.size.toString())
+            }
+    
+            if(this.page != null){
+                params = params.append("page", this.page.toString())
+            }
+            return params
+    }
+
+    private buildOrderParameters(params:HttpParams): HttpParams {
+        if(this.orderBy != null
+            && this.orderBy.length > 0){
+                params = params.append('order_by', this.orderBy.join(',')); 
+        }
+        return params
+    }
+    
+}

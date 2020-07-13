@@ -1,0 +1,11 @@
+import { Routes } from '@angular/router';
+import { <%= classify(name) %>IndexPageComponent } from './<%= dasherize(name) %>-pages/<%= dasherize(name) %>-index-page/<%= dasherize(name) %>-index-page.component';
+import { <%= classify(name) %>DetailPageComponent } from './<%= dasherize(name) %>-pages/<%= dasherize(name) %>-detail-page/<%= dasherize(name) %>-detail-page.component';
+import { <%= classify(name) %>EditPageComponent } from './<%= dasherize(name) %>-pages/<%= dasherize(name) %>-edit-page/<%= dasherize(name) %>-edit-page.component';
+
+export const <%= classify(name) %>Routes: Routes = [
+  {path: '', component: <%= classify(name) %>IndexPageComponent},
+  {path: ':oid/detail', component: <%= classify(name) %>DetailPageComponent},
+  {path: ':oid/edit', component: <%= classify(name) %>EditPageComponent},
+  {path: 'edit', component: <%= classify(name) %>EditPageComponent}
+];

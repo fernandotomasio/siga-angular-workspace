@@ -1,0 +1,36 @@
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-<%= dasherize(name) %>-index-page',
+  templateUrl: './<%= dasherize(name) %>-index-page.component.html'
+})
+export class <%= classify(name) %>IndexPageComponent implements OnInit {
+
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+
+  }
+  onAction(event: any) {
+    let oid: number = event.oid
+    let action: string = event.action
+
+    if (action == 'detail') {
+      this.router.navigate(['<%= underscore(namePluralized) %>', event.oid, 'detail']);
+    }
+    if (action == 'edit') {
+      this.router.navigate(['<%= underscore(namePluralized) %>', event.oid, 'edit']);
+    }
+
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent): void {
+    if (event.altKey
+      && (event.key == 'n' || event.key == 'N'))
+      this.router.navigate(['/<%= underscore(namePluralized) %>/edit'])
+  }
+
+
+}
