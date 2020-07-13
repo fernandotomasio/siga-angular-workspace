@@ -14,7 +14,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "siga-toolkit": [
+        "dist/siga-toolkit/siga-toolkit",
+        "dist/siga-toolkit"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
