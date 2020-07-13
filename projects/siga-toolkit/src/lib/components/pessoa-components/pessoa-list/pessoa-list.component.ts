@@ -1,27 +1,27 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { <%= classify(name) %>Search } from '../../../search/<%= dasherize(name) %>-search';
-import { <%= classify(name) %> } from '../../../model/<%= dasherize(name) %>';
-import { <%= classify(name) %>Service } from '../../../core/<%= dasherize(name) %>.service';
+import { PessoaSearch } from '../../../search/pessoa-search';
+import { Pessoa } from '../../../model/pessoa';
+import { PessoaService } from '../../../core/pessoa.service';
 import { PageEvent, Sort } from '@angular/material';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: '[app-<%= dasherize(name) %>-list]',
-  templateUrl: './<%= dasherize(name) %>-list.component.html'
+  selector: '[app-pessoa-list]',
+  templateUrl: './pessoa-list.component.html'
 })
-export class <%= classify(name) %>ListComponent implements OnInit {
+export class PessoaListComponent implements OnInit {
   @Output() action = new EventEmitter<any>()
   paginateOptions = []
 
   totalCount: number
   filteredCount: number
-  columnsToDisplay = [<%= commaSeparatedAttributes(attributes) %>, 'acoes']
+  columnsToDisplay = ['nome', 'acoes']
   paginate = true;
 
-  search: <%= classify(name) %>Search = new <%= classify(name) %>Search()
-  dataList: <%= classify(name) %>[]
+  search: PessoaSearch = new PessoaSearch()
+  dataList: Pessoa[]
 
-  constructor(private service: <%= classify(name) %>Service) {
+  constructor(private service: PessoaService) {
   }
 
   ngOnInit() {
@@ -68,7 +68,7 @@ export class <%= classify(name) %>ListComponent implements OnInit {
     })
   }
 
-  onSearchChange(event: <%= classify(name) %>Search){
+  onSearchChange(event: PessoaSearch){
     this.search = Object.assign(this.search, event)
     console.log(this.search)
     this.refresh()

@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { <%= classify(name) %>Response } from '../../../resource/response/<%= dasherize(name) %>-response';
+import { <%= classify(name) %> } from '../../../model/<%= dasherize(name) %>';
 
 @Component({
   selector: 'app-<%= dasherize(name) %>-edit-page',
@@ -10,18 +10,18 @@ export class <%= classify(name) %>EditPageComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute) { }
-  oid: number;
+  id: number;
   
   ngOnInit() {
-    this.oid = this.route.snapshot.params['oid']
+    this.id = this.route.snapshot.params['id']
   }
 
-  onSave(event: <%= classify(name) %>Response){
-    this.router.navigate(['/<%= underscore(namePluralized) %>', (event? event.oid : this.oid), 'detail']);
+  onSave(event: <%= classify(name) %>){
+    this.router.navigate(['/<%= underscore(namePluralized) %>', (event? event.id : this.id), 'detail']);
   }
 
   @HostListener('document:keydown', ['$event'])
-  handleKeyDown(event: KeyboardEvent): void {
+  handleKeyDown(event: KeyboardEvent): vid {
     if(event.keyCode == 27)
       this.router.navigate(['/<%= underscore(namePluralized) %>'])
   }

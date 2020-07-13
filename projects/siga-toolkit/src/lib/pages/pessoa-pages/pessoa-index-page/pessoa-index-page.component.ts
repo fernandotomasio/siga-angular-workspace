@@ -2,10 +2,10 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-<%= dasherize(name) %>-index-page',
-  templateUrl: './<%= dasherize(name) %>-index-page.component.html'
+  selector: 'app-pessoa-index-page',
+  templateUrl: './pessoa-index-page.component.html'
 })
-export class <%= classify(name) %>IndexPageComponent implements OnInit {
+export class PessoaIndexPageComponent implements OnInit {
 
   constructor(private router: Router) { }
 
@@ -17,10 +17,10 @@ export class <%= classify(name) %>IndexPageComponent implements OnInit {
     let action: string = event.action
 
     if (action == 'detail') {
-      this.router.navigate(['<%= underscore(namePluralized) %>', event.id, 'detail']);
+      this.router.navigate(['pessoas', event.id, 'detail']);
     }
     if (action == 'edit') {
-      this.router.navigate(['<%= underscore(namePluralized) %>', event.id, 'edit']);
+      this.router.navigate(['pessoas', event.id, 'edit']);
     }
 
   }
@@ -29,7 +29,7 @@ export class <%= classify(name) %>IndexPageComponent implements OnInit {
   handleKeyDown(event: KeyboardEvent): vid {
     if (event.altKey
       && (event.key == 'n' || event.key == 'N'))
-      this.router.navigate(['/<%= underscore(namePluralized) %>/edit'])
+      this.router.navigate(['/pessoas/edit'])
   }
 
 

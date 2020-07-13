@@ -4,7 +4,7 @@ import { <%= classify(name) %>DetailComponent } from './<%= dasherize(name) %>-d
 import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
 import { <%= classify(name) %>Service } from '../../core/<%= dasherize(name) %>.service';
-import { <%= classify(name) %>Response } from '../../resource/response/<%= dasherize(name) %>-response';
+import { <%= classify(name) %> } from '../../model/<%= dasherize(name) %>';
 
 describe('<%= classify(name) %>DetailComponent', () => {
   let component: <%= classify(name) %>DetailComponent;
@@ -31,10 +31,10 @@ describe('<%= classify(name) %>DetailComponent', () => {
   });
 
   it('should render <%= dasherize(name) %> detail', () => {
-    const expectedData: <%= classify(name) %>Response = new <%= classify(name) %>Response();
+    const expectedData: <%= classify(name) %> = new <%= classify(name) %>();
     expectedData.fullName = "fake fullname"
     expectedData.shortName = "fake shortname"
-    expectedData.oid = 1435
+    expectedData.id = 1435
 
     spyService = TestBed.get(<%= classify(name) %>Service)
     spyService.find.and.returnValue(of(expectedData))

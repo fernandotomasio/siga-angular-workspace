@@ -2,10 +2,10 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-<%= dasherize(name) %>-detail-page',
-  templateUrl: './<%= dasherize(name) %>-detail-page.component.html'
+  selector: 'app-pessoa-detail-page',
+  templateUrl: './pessoa-detail-page.component.html'
 })
-export class <%= classify(name) %>DetailPageComponent implements OnInit {
+export class PessoaDetailPageComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute) { }
@@ -18,6 +18,6 @@ export class <%= classify(name) %>DetailPageComponent implements OnInit {
   @HostListener('document:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
     if(event.keyCode == 27)
-      this.router.navigate(['/<%= underscore(namePluralized) %>'])
+      this.router.navigate(['/pessoas'])
   }
 }

@@ -1,9 +1,9 @@
 <mat-card>
   <mat-card-content>
         <mat-card-title>Detalhe de <%= capitalize(title) %></mat-card-title>
-        <app-<%= dasherize(name) %>-detail [oid]="oid"></app-<%= dasherize(name) %>-detail>
-        <a mat-button id="link-edit" [routerLink]="['/<%= underscore(namePluralized) %>', oid, 'edit']">Editar</a>&nbsp;
-        <a mat-button id="link-remove" [routerLink]="['/<%= underscore(namePluralized) %>', oid, 'remove']">Remover</a>&nbsp;
+        <app-<%= dasherize(name) %>-detail [id]="id"></app-<%= dasherize(name) %>-detail>
+        <a mat-button id="link-edit" [routerLink]="['/<%= underscore(namePluralized) %>', id, 'edit']">Editar</a>&nbsp;
+        <a mat-button id="link-remove" [routerLink]="['/<%= underscore(namePluralized) %>', id, 'remove']">Remover</a>&nbsp;
         <a mat-button id="link-close" [routerLink]="['/<%= underscore(namePluralized) %>']">Fechar</a>
   </mat-card-content>
 </mat-card>

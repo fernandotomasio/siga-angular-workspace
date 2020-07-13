@@ -1,40 +1,40 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { <%= classify(name) %>ListComponent } from './<%= dasherize(name) %>-list.component';
+import { PessoaListComponent } from './pessoa-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { <%= classify(name) %>SearchComponent } from '../<%= dasherize(name) %>-search/<%= dasherize(name) %>-search.component';
+import { PessoaSearchComponent } from '../pessoa-search/pessoa-search.component';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { <%= classify(name) %>Service } from '../../core/<%= dasherize(name) %>.service';
+import { PessoaService } from '../../core/pessoa.service';
 import { DemoMaterialModule } from '../../demo-material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-describe('<%= classify(name) %>ListComponent', () => {
-  let component: <%= classify(name) %>ListComponent;
-  let fixture: ComponentFixture<<%= classify(name) %>ListComponent>;
-  let spyService: jasmine.SpyObj<<%= classify(name) %>Service>
+describe('PessoaListComponent', () => {
+  let component: PessoaListComponent;
+  let fixture: ComponentFixture<PessoaListComponent>;
+  let spyService: jasmine.SpyObj<PessoaService>
 
 
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('<%= classify(name) %>Service', ['findAll'])
+    const spy = jasmine.createSpyObj('PessoaService', ['findAll'])
 
     TestBed.configureTestingModule({
       imports: [HttpClientModule, DemoMaterialModule, 
         FlexLayoutModule, ReactiveFormsModule],
-      declarations: [<%= classify(name) %>ListComponent, <%= classify(name) %>SearchComponent],
-      providers: [{ provide: <%= classify(name) %>Service, useValue: spy }]
+      declarations: [PessoaListComponent, PessoaSearchComponent],
+      providers: [{ provide: PessoaService, useValue: spy }]
     })
 
-    fixture = TestBed.createComponent(<%= classify(name) %>ListComponent);
+    fixture = TestBed.createComponent(PessoaListComponent);
     component = fixture.componentInstance;
   });
 
-  it('should create <%= dasherize(name) %> list', () => {
+  it('should create pessoa list', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render <%= dasherize(name) %> data list', () => {
+  it('should render pessoa data list', () => {
     let fakeData = {
       data: [
         {
@@ -54,7 +54,7 @@ describe('<%= classify(name) %>ListComponent', () => {
         }
       ]
     }
-    spyService = TestBed.get(<%= classify(name) %>Service)
+    spyService = TestBed.get(PessoaService)
     spyService.findAll.and.returnValue(of(fakeData));
 
     fixture.autoDetectChanges();
@@ -76,7 +76,7 @@ describe('<%= classify(name) %>ListComponent', () => {
         }
       ]
     }
-    spyService = TestBed.get(<%= classify(name) %>Service)
+    spyService = TestBed.get(PessoaService)
     spyService.findAll.and.returnValue(of(fakeData));
 
     fixture.autoDetectChanges();
@@ -97,7 +97,7 @@ describe('<%= classify(name) %>ListComponent', () => {
         }
       ]
     }
-    spyService = TestBed.get(<%= classify(name) %>Service)
+    spyService = TestBed.get(PessoaService)
     spyService.findAll.and.returnValue(of(fakeData));
 
     fixture.autoDetectChanges();

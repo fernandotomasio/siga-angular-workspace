@@ -1,5 +1,5 @@
-export class <%= classify(name) %>Response {
-    oid: number
+export class <%= classify(name) %> {
+    id: number
 <% for (let attribute of attributes) { %>
     <%= camelize(attribute.name) %><% if (attribute.nullable) { %>?<% }%>: <%= attribute.type %>
 <% } %>

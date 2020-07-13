@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { <%= classify(name) %>Search } from '../search/<%= dasherize(name) %>-search';
 import { Observable } from 'rxjs';
-import { <%= classify(name) %>Response } from '../resource/response/<%= dasherize(name) %>-response';
-import { <%= classify(name) %>Request } from '../resource/request/<%= dasherize(name) %>-request';
+import { <%= classify(name) %> } from '../model/<%= dasherize(name) %>';
 import { environment } from '../../environments/environment';
 
 
@@ -15,19 +13,19 @@ export class <%= classify(name) %>Service {
   
   constructor(private http: HttpClient) { }
 
-  findAll(search: <%= classify(name) %>Search): Observable<any> {
-    return this.http.get<any>(`${environment.API}<%= resource %>`, { params: search.queryParameters() })
+  findAll(search: any): Observable<any> {
+    return this.http.get<any>(`${environment.API}<%= resource %>`, { params: search })
   }
-  find(oid: number): Observable<<%= classify(name) %>Response> {
-    return this.http.get<<%= classify(name) %>Response>(`${environment.API}<%= resource %>/${oid}`)
+  find(id: number): Observable<<%= classify(name) %>> {
+    return this.http.get<<%= classify(name) %>>(`${environment.API}<%= resource %>/${id}`)
   }
-  remove(oid: number): Observable<any> {
-    return this.http.delete<any>(`${environment.API}<%= resource %>/${oid}`)
+  remove(id: number): Observable<any> {
+    return this.http.delete<any>(`${environment.API}<%= resource %>/${id}`)
   }
 
-  save(data:<%= classify(name) %>Request): Observable<<%= classify(name) %>Response>{
-    return !data.oid
-    ? this.http.post<<%= classify(name) %>Response>(`${environment.API}<%= resource %>/`, data)
-    : this.http.put<<%= classify(name) %>Response>(`${environment.API}<%= resource %>/`, data)
+  save(data:any): Observable<<%= classify(name) %>>{
+    return !data.id
+    ? this.http.post<<%= classify(name) %>>(`${environment.API}<%= resource %>/`, data)
+    : this.http.put<<%= classify(name) %>>(`${environment.API}<%= resource %>/`, data)
   }
 }

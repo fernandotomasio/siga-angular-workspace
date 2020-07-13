@@ -1,12 +1,12 @@
 
-<app-<%= dasherize(name) %>-search (searchChange)="onSearchChange($event)"  [advanced]="isToogleSearch" ></app-<%= dasherize(name) %>-search>
+<app-pessoa-search (searchChange)="onSearchChange($event)"  [advanced]="isToogleSearch" ></app-pessoa-search>
 <table class="table" mat-table [dataSource]="dataList" matSort  (matSortChange)="onSortChange($event)" >
-  <% for (let attribute of attributes) { %>
-    <ng-container matColumnDef="<%= camelize(attribute.name) %>">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> <%= capitalize(attribute.label) %></th>
-      <td mat-cell *matCellDef="let item"> {{item.<%= camelize(attribute.name) %>}} </td>
+  
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome</th>
+      <td mat-cell *matCellDef="let item"> {{item.nome}} </td>
     </ng-container>
-  <% } %>
+  
   
   <ng-container matColumnDef="acoes">
     <th mat-header-cell *matHeaderCellDef> Ações </th>

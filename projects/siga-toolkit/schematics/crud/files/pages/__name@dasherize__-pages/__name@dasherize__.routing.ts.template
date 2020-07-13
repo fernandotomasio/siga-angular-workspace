@@ -5,7 +5,7 @@ import { <%= classify(name) %>EditPageComponent } from './<%= dasherize(name) %>
 
 export const <%= classify(name) %>Routes: Routes = [
   {path: '', component: <%= classify(name) %>IndexPageComponent},
-  {path: ':oid/detail', component: <%= classify(name) %>DetailPageComponent},
-  {path: ':oid/edit', component: <%= classify(name) %>EditPageComponent},
+  {path: ':id/detail', component: <%= classify(name) %>DetailPageComponent},
+  {path: ':id/edit', component: <%= classify(name) %>EditPageComponent},
   {path: 'edit', component: <%= classify(name) %>EditPageComponent}
 ];

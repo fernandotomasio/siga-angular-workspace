@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { <%= classify(name) %>Response } from '../../../resource/response/<%= name %>-response';
+import { <%= classify(name) %> } from '../../../model/<%= name %>';
 import { <%= classify(name) %>Service } from '../../../core/<%= name %>.service';
 
 @Component({
@@ -7,13 +7,13 @@ import { <%= classify(name) %>Service } from '../../../core/<%= name %>.service'
   templateUrl: './<%= name %>-detail.component.html'
 })
 export class <%= classify(name) %>DetailComponent implements OnInit {
-  @Input() oid: number
-  data: <%= classify(name) %>Response
+  @Input() id: number
+  data: <%= classify(name) %>
 
   constructor(private service: <%= classify(name) %>Service) { }
 
   ngOnInit() {
-    this.service.find(this.oid)
+    this.service.find(this.id)
     .subscribe(data => this.data = data)
   }
 

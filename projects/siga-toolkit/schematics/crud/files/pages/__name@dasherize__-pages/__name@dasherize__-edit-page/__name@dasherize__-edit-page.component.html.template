@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-content>
     <mat-card-title>Editar <%= capitalize(title) %></mat-card-title>
-    <app-<%= dasherize(name) %>-form [oid]="oid" (saved)="onSave($event)"></app-<%= dasherize(name) %>-form>
+    <app-<%= dasherize(name) %>-form [id]="id" (saved)="onSave($event)"></app-<%= dasherize(name) %>-form>
   </mat-card-content>
 </mat-card>
