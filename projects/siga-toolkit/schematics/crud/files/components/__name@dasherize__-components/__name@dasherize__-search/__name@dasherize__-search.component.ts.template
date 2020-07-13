@@ -1,15 +1,15 @@
 import { Component, OnInit, Output, EventEmitter, Input, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { <%= classify(name) %>Search } from 'src/app/search/<%= dasherize(name) %>-search';
+
 @Component({
   selector: 'app-<%= dasherize(name) %>-search',
   templateUrl: './<%= dasherize(name) %>-search.component.html'
 })
 export class <%= classify(name) %>SearchComponent implements OnInit {
-  search: <%= classify(name) %>Search = new <%= classify(name) %>Search
+
   @Input() advanced: boolean = false;
   form: FormGroup
-  @Output() searchChange = new EventEmitter<<%= classify(name) %>Search>()
+  @Output() searchChange = new EventEmitter<any>()
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {

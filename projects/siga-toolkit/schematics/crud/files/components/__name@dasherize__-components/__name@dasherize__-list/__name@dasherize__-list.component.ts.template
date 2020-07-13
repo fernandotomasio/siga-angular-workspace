@@ -18,7 +18,13 @@ export class <%= classify(name) %>ListComponent implements OnInit {
   columnsToDisplay = [<%= commaSeparatedAttributes(attributes) %>, 'acoes']
   paginate = true;
 
-  search: <%= classify(name) %>Search = new <%= classify(name) %>Search()
+ search:any = {
+    paginate: 'true',
+    size: '10',
+    page: '0',
+    orderBy: []
+  }
+  
   dataList: <%= classify(name) %>[]
 
   constructor(private service: <%= classify(name) %>Service) {
