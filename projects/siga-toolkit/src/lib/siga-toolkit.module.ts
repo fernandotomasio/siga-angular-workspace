@@ -6,6 +6,7 @@ import { SigaToolkitComponent } from './siga-toolkit.component';
 @NgModule({
   declarations: [SigaToolkitComponent],
   imports: [
+    FlexLayout
   ],
   exports: [SigaToolkitComponent]
 })

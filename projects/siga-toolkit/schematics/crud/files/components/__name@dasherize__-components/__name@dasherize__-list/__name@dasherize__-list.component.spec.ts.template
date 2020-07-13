@@ -6,8 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { <%= classify(name) %>SearchComponent } from '../<%= dasherize(name) %>-search/<%= dasherize(name) %>-search.component';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { <%= classify(name) %>Service } from '../../core/<%= dasherize(name) %>.service';
-import { DemoMaterialModule } from '../../demo-material-module';
+import { <%= classify(name) %>Service } from '../../../core/<%= dasherize(name) %>.service';
+import { MaterialModule } from '../../../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 describe('<%= classify(name) %>ListComponent', () => {
@@ -20,7 +20,7 @@ describe('<%= classify(name) %>ListComponent', () => {
     const spy = jasmine.createSpyObj('<%= classify(name) %>Service', ['findAll'])
 
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, DemoMaterialModule, 
+      imports: [HttpClientModule, MaterialModule, 
         FlexLayoutModule, ReactiveFormsModule],
       declarations: [<%= classify(name) %>ListComponent, <%= classify(name) %>SearchComponent],
       providers: [{ provide: <%= classify(name) %>Service, useValue: spy }]

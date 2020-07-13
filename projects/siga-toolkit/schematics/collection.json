@@ -5,11 +5,6 @@
       "description": "Schematic for creation of CRUD scaffold.",
       "factory": "./crud/index#crud",
       "schema": "./crud/schema.json"
-    },
-    "init": {
-      "description": "Schematic for initialize app.",
-      "factory": "./init/index#init",
-      "schema": "./init/schema.json"
     }
   }
 }

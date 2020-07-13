@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { <%= classify(name) %>DetailComponent } from './<%= dasherize(name) %>-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
-import { <%= classify(name) %>Service } from '../../core/<%= dasherize(name) %>.service';
-import { <%= classify(name) %> } from '../../model/<%= dasherize(name) %>';
+import { <%= classify(name) %>Service } from '../../../core/<%= dasherize(name) %>.service';
+import { <%= classify(name) %> } from '../../../model/<%= dasherize(name) %>';
 
 describe('<%= classify(name) %>DetailComponent', () => {
   let component: <%= classify(name) %>DetailComponent;

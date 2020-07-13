@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { <%= classify(name) %>FormComponent } from '../../<%= dasherize(name) %>-form/<%= dasherize(name) %>-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DemoMaterialModule } from '../../../demo-material-module';
+import {MaterialModule } from '../../../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 describe('<%= classify(name) %>EditPageComponent', () => {
@@ -13,7 +13,7 @@ describe('<%= classify(name) %>EditPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, DemoMaterialModule, 
+      imports: [ RouterTestingModule, MaterialModule, 
         FlexLayoutModule, 
         ReactiveFormsModule, HttpClientModule ],
       declarations: [<%= classify(name) %>EditPageComponent, <%= classify(name) %>FormComponent]

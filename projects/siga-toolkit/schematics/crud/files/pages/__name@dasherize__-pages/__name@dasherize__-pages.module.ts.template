@@ -4,17 +4,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { <%= classify(name) %>Routes } from './<%= dasherize(name) %>.routing';
-import { MaterialModule } from '../material-module';
+import { MaterialModule } from '../../material.module';
 import { <%= classify(name) %>DetailPageComponent } from './<%= dasherize(name) %>-detail-page/<%= dasherize(name) %>-detail-page.component';
 import { <%= classify(name) %>IndexPageComponent } from './<%= dasherize(name) %>-index-page/<%= dasherize(name) %>-index-page.component';
 import { <%= classify(name) %>EditPageComponent } from './<%= dasherize(name) %>-edit-page/<%= dasherize(name) %>-edit-page.component';
+import { <%= classify(name) %>ComponentsModule } from '../../components/<%= dasherize(name) %>-components/<%= dasherize(name) %>-components.module';
 
 @NgModule({
   declarations: [<%= classify(name) %>DetailPageComponent, <%= classify(name) %>IndexPageComponent, <%= classify(name) %>EditPageComponent],
   imports: [
     CommonModule,
     MaterialModule, 
-    RouterModule.forChild(<%= classify(name) %>Routes)
+    RouterModule.forChild(<%= classify(name) %>Routes),
+    <%= classify(name) %>ComponentsModule
   ]
 })
 export class <%= classify(name) %>PagesModule { }

@@ -4,7 +4,7 @@ import { <%= classify(name) %>FormComponent } from './<%= dasherize(name) %>-for
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
-import { <%= classify(name) %>Service } from '../../core/<%= dasherize(name) %>.service';
+import { <%= classify(name) %>Service } from '../../../core/<%= dasherize(name) %>.service';
 
 describe('<%= classify(name) %>FormComponent', () => {
   let component: <%= classify(name) %>FormComponent;
