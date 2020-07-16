@@ -50,13 +50,13 @@ export class <%= classify(name) %>ListComponent implements OnInit {
   onSortChange(event: Sort) {
     switch(event.direction){
       case 'asc':
-        this.search.order_by = [event.active]
+        this.search.orderBy = [event.active]
       break
       case 'desc':
-        this.search.order_by = ['-' + event.active]
+        this.search.orderBy = ['-' + event.active]
       break
       default:
-        this.search.order_by = []
+        this.search.orderBy = []
     }
     this.refresh()
   }
