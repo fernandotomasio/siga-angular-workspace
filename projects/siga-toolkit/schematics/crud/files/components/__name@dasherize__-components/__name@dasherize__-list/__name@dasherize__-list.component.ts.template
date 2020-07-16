@@ -1,9 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { <%= classify(name) %>Search } from '../../../search/<%= dasherize(name) %>-search';
 import { <%= classify(name) %> } from '../../../model/<%= dasherize(name) %>';
 import { <%= classify(name) %>Service } from '../../../core/<%= dasherize(name) %>.service';
-import { PageEvent, Sort } from '@angular/material';
-import { environment } from 'src/environments/environment';
+import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: '[app-<%= dasherize(name) %>-list]',
@@ -11,12 +10,12 @@ import { environment } from 'src/environments/environment';
 })
 export class <%= classify(name) %>ListComponent implements OnInit {
   @Output() action = new EventEmitter<any>()
-  paginateOptions = []
+  paginateOptions = [10, 20, 30]
 
   totalCount: number
   filteredCount: number
   columnsToDisplay = [<%= commaSeparatedAttributes(attributes) %>, 'acoes']
-  paginate = true;
+
 
  search:any = {
     paginate: 'true',
@@ -31,10 +30,7 @@ export class <%= classify(name) %>ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.search.size = environment.paginateDefaultSize
-    this.search.paginate = this.paginate
-    this.paginateOptions = environment.paginateOptions
-    this.refresh();
+    
   }
 
   refresh() {
@@ -52,20 +48,19 @@ export class <%= classify(name) %>ListComponent implements OnInit {
   }
 
   onSortChange(event: Sort) {
-   
     switch(event.direction){
       case 'asc':
-        this.search.orderBy = [event.active]
+        this.search.order_by = [event.active]
       break
       case 'desc':
-        this.search.orderBy = ['-' + event.active]
+        this.search.order_by = ['-' + event.active]
       break
       default:
-        this.search.orderBy = []
+        this.search.order_by = []
     }
-   
     this.refresh()
   }
+
 
   raiseAction(action: string, id: number) {
     this.action.emit({ 
@@ -74,9 +69,8 @@ export class <%= classify(name) %>ListComponent implements OnInit {
     })
   }
 
-  onSearchChange(event: <%= classify(name) %>Search){
+  onSearchChange(event: any){
     this.search = Object.assign(this.search, event)
-    console.log(this.search)
     this.refresh()
   }
 }

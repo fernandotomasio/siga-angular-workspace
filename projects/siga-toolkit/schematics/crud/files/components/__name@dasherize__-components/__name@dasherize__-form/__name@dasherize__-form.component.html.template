@@ -6,7 +6,7 @@
                     placeholder="<%= capitalize(attribute.label) %>"  formControlName="<%= camelize(attribute.name) %>">
             </mat-form-field>
         <% } %>
-            <a mat-button id="link-close" [routerLink]="['/<%= underscore(namePluralized) %>']">Cancelar</a>
+            <a mat-button (click)="cancel()">Cancelar</a>
             <button mat-raised-button type="submit" color="primary">Gravar</button>
     </div>
 </form>

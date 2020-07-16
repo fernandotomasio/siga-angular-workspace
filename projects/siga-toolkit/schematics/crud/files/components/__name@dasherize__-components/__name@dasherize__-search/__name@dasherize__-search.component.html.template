@@ -1,19 +1,42 @@
 <form class="basic-form" [formGroup]="form" (submit)="onSubmit()">
+<mat-tab-group  mat-align-tabs="end">
+  <mat-tab>
+  <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">search</mat-icon>
+      Busca Simples
+    </ng-template> 
     <div fxLayout="row wrap">
-        <mat-form-field  *ngIf="!advanced">
-            <input matInput type='text' class="form-control" formControlName="q" placeholder='Digite um termo para pesquisa...' />
-            <a mat-button matSuffix mat-icon-button aria-label="Expandir" (click)="changeMode()"  matTooltip="Expandir para pesquisa avançada" >
-                <mat-icon>launch</mat-icon>
-            </a>
-        </mat-form-field>
-
-         <% for (let parameter of searchParameters) { %>
-            <mat-form-field *ngIf="advanced">
-                <input matInput type="<% if (parameter.type === 'string') { %>text<% }%><% if (parameter.type === 'number') { %>number<% }%>"
-                    class="form-control" formControlName="<%= camelize(parameter.name) %>"  placeholder='<%= capitalize(parameter.label) %>...' />
+        <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+            <mat-form-field>
+                <input matInput id="q" type='text' class="form-control" autocomplete="off"
+                 formControlName="q" placeholder='Digite um termo para pesquisa...' cdkFocusInitial  />
             </mat-form-field>
-        <% } %>
-
-        <button mat-raised-button type="submit" color="primary"  *ngIf="advanced">Buscar</button>
+        </div>
     </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">zoom_in</mat-icon>
+        Busca Avançada
+      </ng-template> 
+  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+            <mat-form-field>
+                <input matInput type='text' class="form-control" formControlName="q" placeholder='Digite um termo para pesquisa...' />
+            </mat-form-field>
+        </div>
+        <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+            <mat-form-field>
+                <input matInput type='text' class="form-control" formControlName="q" placeholder='Digite um termo para pesquisa...' />
+            </mat-form-field>
+        </div>
+        <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+            <mat-form-field>
+                <input matInput type='text' class="form-control" formControlName="q" placeholder='Digite um termo para pesquisa...' />
+            </mat-form-field>
+        </div>
+        <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+            <button mat-raised-button type="submit" color="primary">Buscar</button>
+        </div>
+   </mat-tab>
+</mat-tab-group>
 </form>

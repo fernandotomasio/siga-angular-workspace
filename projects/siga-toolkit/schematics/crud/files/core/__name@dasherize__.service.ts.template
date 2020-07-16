@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { <%= classify(name) %> } from '../model/<%= dasherize(name) %>';
 import { environment } from '../../environments/environment';
-
+import {removeEmptyFields} from '../helper/form-helper';
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +14,20 @@ export class <%= classify(name) %>Service {
   constructor(private http: HttpClient) { }
 
   findAll(search: any): Observable<any> {
-    return this.http.get<any>(`${environment.API}<%= resource %>`, { params: search })
+    removeEmptyFields(search)
+    const params = new HttpParams({fromObject: search })
+    return this.http.get<any>(`${environment.API_ENDPOINT_URL}<%= resource %>`, { params: search })
   }
   find(id: number): Observable<<%= classify(name) %>> {
-    return this.http.get<<%= classify(name) %>>(`${environment.API}<%= resource %>/${id}`)
+    return this.http.get<<%= classify(name) %>>(`${environment.API_ENDPOINT_URL}<%= resource %>/${id}`)
   }
   remove(id: number): Observable<any> {
-    return this.http.delete<any>(`${environment.API}<%= resource %>/${id}`)
+    return this.http.delete<any>(`${environment.API_ENDPOINT_URL}<%= resource %>/${id}`)
   }
 
   save(data:any): Observable<<%= classify(name) %>>{
     return !data.id
-    ? this.http.post<<%= classify(name) %>>(`${environment.API}<%= resource %>/`, data)
-    : this.http.put<<%= classify(name) %>>(`${environment.API}<%= resource %>/`, data)
+    ? this.http.post<<%= classify(name) %>>(`${environment.API_ENDPOINT_URL}<%= resource %>/`, data)
+    : this.http.put<<%= classify(name) %>>(`${environment.API_ENDPOINT_URL}<%= resource %>/`, data)
   }
 }

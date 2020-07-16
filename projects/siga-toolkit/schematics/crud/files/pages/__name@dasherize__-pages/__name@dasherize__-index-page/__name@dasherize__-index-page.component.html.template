@@ -1,10 +1,6 @@
-<mat-card>
-  <mat-card-content>
-      <mat-card-title>Lista de <%= capitalize(titlePluralized) %></mat-card-title>
-      <div app-<%= dasherize(name) %>-list  class="responsive-table" (action)="onAction($event)">
-      </div>
-  </mat-card-content>
-</mat-card>
+
+  <div app-<%= dasherize(name) %>-list  class="responsive-table" (action)="onAction($event)">
+  </div>
   <a 
   style="position: fixed; bottom: 50px; right: 30px; z-index: 2; "  
   mat-fab color="primary" [routerLink]="['/<%= underscore(namePluralized) %>', 'edit']">

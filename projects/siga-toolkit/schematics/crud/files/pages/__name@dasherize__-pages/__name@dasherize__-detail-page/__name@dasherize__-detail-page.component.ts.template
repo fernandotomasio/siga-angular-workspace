@@ -12,7 +12,13 @@ export class <%= classify(name) %>DetailPageComponent implements OnInit {
   id: number;
   
   ngOnInit() {
-    this.id = this.route.snapshot.params['id']
+    this.route.params.subscribe(param => {
+      this.id = param.id
+    })
+  }
+
+  onRemove() {
+   this.router.navigate(['/<%= underscore(namePluralized) %>']) 
   }
   
   @HostListener('document:keydown', ['$event'])

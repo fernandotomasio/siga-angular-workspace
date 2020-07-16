@@ -13,11 +13,17 @@ export class <%= classify(name) %>EditPageComponent implements OnInit {
   id: number;
   
   ngOnInit() {
-    this.id = this.route.snapshot.params['id']
+    this.route.params.subscribe(param => {
+      this.id = param.id
+    })
   }
 
   onSave(event: <%= classify(name) %>){
     this.router.navigate(['/<%= underscore(namePluralized) %>', (event? event.id : this.id), 'detail']);
+  }
+  
+  onCancel(){
+    this.router.navigate(['/<%= underscore(namePluralized) %>']);
   }
 
   @HostListener('document:keydown', ['$event'])

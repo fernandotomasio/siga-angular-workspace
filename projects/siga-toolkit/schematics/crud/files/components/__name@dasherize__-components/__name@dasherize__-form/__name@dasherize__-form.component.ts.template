@@ -11,12 +11,14 @@ export class <%= classify(name) %>FormComponent implements OnInit {
   @Input() id: number
   form: FormGroup
   @Output() saved = new EventEmitter<<%= classify(name) %>>()
+  @Output() canceled = new EventEmitter()
   
   constructor(private service: <%= classify(name) %>Service,
     private fb: FormBuilder) { }
 
   ngOnInit() {
     this.form = this.fb.group({
+      id: this.fb.control(''),
     <% for (let attribute of attributes) { %>
       <%= camelize(attribute.name) %>: this.fb.control(''<% if (!attribute.nullable) { %>, Validators.required<% }%>),
     <% } %>
@@ -26,9 +28,7 @@ export class <%= classify(name) %>FormComponent implements OnInit {
       this.service.find(this.id)
         .subscribe(data =>
           this.form.patchValue({
-        <% for (let attribute of attributes) { %>
-            <%= camelize(attribute.name) %>: data.<%= camelize(attribute.name) %>,
-        <% } %>
+            ...data
           }))
     }
   }
@@ -39,6 +39,9 @@ export class <%= classify(name) %>FormComponent implements OnInit {
         this.saved.emit(response)
       });
     }
+  }
+  cancel() {
+    this.canceled.emit()
   }
 
 }

@@ -1,5 +1,15 @@
 
-<app-<%= dasherize(name) %>-search (searchChange)="onSearchChange($event)"  [advanced]="isToogleSearch" ></app-<%= dasherize(name) %>-search>
+
+<mat-card>
+  <mat-card-content>
+    <app-<%= dasherize(name) %>-search (searched)="onSearchChange($event)"></app-<%= dasherize(name) %>-search>
+  </mat-card-content>
+</mat-card>
+
+
+<mat-card>
+  <mat-card-content>
+<div class="responsive-table">
 <table class="table" mat-table [dataSource]="dataList" matSort  (matSortChange)="onSortChange($event)" >
   <% for (let attribute of attributes) { %>
     <ng-container matColumnDef="<%= camelize(attribute.name) %>">
@@ -18,9 +28,7 @@
           <button mat-menu-item (click)="raiseAction('edit', item.id)">
             Editar
           </button>
-          <button mat-menu-item (click)="raiseAction('remove', item.id)">
-            Remover
-          </button>
+          <app-<%= dasherize(name) %>-remove [id]="item.id" (deleted)="refresh()">Remover</app-<%= dasherize(name) %>-remove>
         </mat-menu>
             <button mat-icon-button [matMenuTriggerFor]="appMenu">
                 <mat-icon>more_vert</mat-icon>
@@ -31,6 +39,10 @@
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
   <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
 </table>
+</div>
 
-<mat-paginator [length]="filteredCount" [pageSize]="paginateDefaultSize" 
+<mat-paginator  [length]="filteredCount" [pageSize]="search.pageSize" 
     [pageSizeOptions]="paginateOptions" showFirstLastButtons (page)="onPageChange($event)"></mat-paginator>
+  
+  </mat-card-content>
+</mat-card>
