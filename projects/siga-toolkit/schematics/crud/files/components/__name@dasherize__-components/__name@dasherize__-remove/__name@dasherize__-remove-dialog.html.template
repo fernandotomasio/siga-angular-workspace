@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Importante</h2>
 <mat-dialog-content class="mat-typography">
   <h3>Exclusão</h3>
-  <p>Tem certeza de que deseja excluir este(a) <%= lowercase(attribute.label) %>? Não será possivel reverter a operação.</p>
+  <p>Tem certeza de que deseja excluir este(a) <%= lowercase(title) %>? Não será possivel reverter a operação.</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>

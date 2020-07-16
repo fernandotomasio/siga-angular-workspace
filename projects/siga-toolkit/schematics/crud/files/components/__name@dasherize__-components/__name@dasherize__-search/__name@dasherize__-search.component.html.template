@@ -19,24 +19,14 @@
         <mat-icon class="example-tab-icon">zoom_in</mat-icon>
         Busca Avançada
       </ng-template> 
-  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <mat-form-field>
-                <input matInput type='text' class="form-control" formControlName="q" placeholder='Digite um termo para pesquisa...' />
-            </mat-form-field>
-        </div>
+       <% for (let parameter of searchParameters) { %>
         <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
             <mat-form-field>
-                <input matInput type='text' class="form-control" formControlName="q" placeholder='Digite um termo para pesquisa...' />
+                <input matInput type="<% if (parameter.type === 'string') { %>text<% }%><% if (parameter.type === 'number') { %>number<% }%>"
+                    class="form-control" formControlName="<%= camelize(parameter.name) %>"  placeholder='<%= capitalize(parameter.label) %>...' />
             </mat-form-field>
         </div>
-        <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <mat-form-field>
-                <input matInput type='text' class="form-control" formControlName="q" placeholder='Digite um termo para pesquisa...' />
-            </mat-form-field>
-        </div>
-        <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <button mat-raised-button type="submit" color="primary">Buscar</button>
-        </div>
+        <% } %>
    </mat-tab>
 </mat-tab-group>
 </form>
