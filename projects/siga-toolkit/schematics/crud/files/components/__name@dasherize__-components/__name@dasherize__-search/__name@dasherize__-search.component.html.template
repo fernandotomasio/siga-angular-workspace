@@ -27,6 +27,9 @@
             </mat-form-field>
         </div>
         <% } %>
+        <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+            <button mat-raised-button type="submit" color="primary">Buscar</button>
+        </div>
    </mat-tab>
 </mat-tab-group>
 </form>
