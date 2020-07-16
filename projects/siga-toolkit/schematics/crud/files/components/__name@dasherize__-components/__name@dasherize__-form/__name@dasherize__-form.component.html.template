@@ -1,13 +1,17 @@
  <form class="basic-form" [formGroup]="form" (submit)="onSubmit()">
     <div fxLayout="row wrap">
         <% for (let attribute of attributes) { %>
+          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
             <mat-form-field>
                 <input matInput type="<% if (attribute.type === 'string') { %>text<% }%><% if (attribute.type === 'number') { %>number<% }%>"
                     placeholder="<%= capitalize(attribute.label) %>"  formControlName="<%= camelize(attribute.name) %>">
             </mat-form-field>
+            </div>
         <% } %>
+          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
             <a mat-button (click)="cancel()">Cancelar</a>
             <button mat-raised-button type="submit" color="primary">Gravar</button>
+            </div>
     </div>
 </form>
 

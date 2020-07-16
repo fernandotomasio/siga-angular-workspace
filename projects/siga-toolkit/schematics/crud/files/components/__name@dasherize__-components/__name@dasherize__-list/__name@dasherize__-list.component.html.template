@@ -28,7 +28,9 @@
           <button mat-menu-item (click)="raiseAction('edit', item.id)">
             Editar
           </button>
-          <app-<%= dasherize(name) %>-remove [id]="item.id" (deleted)="refresh()">Remover</app-<%= dasherize(name) %>-remove>
+          <app-<%= dasherize(name) %>-remove [id]="item.id" (deleted)="refresh()">
+            <button  mat-menu-item>Remover</button>
+          </app-<%= dasherize(name) %>-remove>
         </mat-menu>
             <button mat-icon-button [matMenuTriggerFor]="appMenu">
                 <mat-icon>more_vert</mat-icon>

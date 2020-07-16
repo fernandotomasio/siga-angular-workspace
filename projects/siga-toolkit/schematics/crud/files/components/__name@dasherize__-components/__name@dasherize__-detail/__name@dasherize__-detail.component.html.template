@@ -1,5 +1,7 @@
 <div fxLayout="row wrap">
   <% for (let attribute of attributes) { %>
+    <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
       <p><b><%= attribute.label %>: </b> {{ data?.<%= camelize(attribute.name) %> }}</p>
+    </div>
   <% } %>
 </div>
