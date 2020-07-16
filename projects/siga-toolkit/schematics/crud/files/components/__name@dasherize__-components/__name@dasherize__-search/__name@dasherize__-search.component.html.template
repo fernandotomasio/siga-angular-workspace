@@ -19,6 +19,7 @@
         <mat-icon class="example-tab-icon">zoom_in</mat-icon>
         Busca Avançada
       </ng-template> 
+       <div fxLayout="row wrap">
        <% for (let parameter of searchParameters) { %>
         <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
             <mat-form-field>
@@ -27,6 +28,7 @@
             </mat-form-field>
         </div>
         <% } %>
+        </div>
         <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
             <button mat-raised-button type="submit" color="primary">Buscar</button>
         </div>

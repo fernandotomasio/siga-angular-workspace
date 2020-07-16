@@ -9,13 +9,13 @@ import { <%= classify(name) %>DetailComponent } from './<%= dasherize(name) %>-d
 import { <%= classify(name) %>FormComponent } from './<%= dasherize(name) %>-form/<%= dasherize(name) %>-form.component';
 import { <%= classify(name) %>SearchComponent } from './<%= dasherize(name) %>-search/<%= dasherize(name) %>-search.component';
 import { <%= classify(name) %>RemoveComponent, <%= classify(name) %>RemoveDialogComponent } from './<%= dasherize(name) %>-remove/<%= dasherize(name) %>-remove.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [<%= classify(name) %>ListComponent, <%= classify(name) %>DetailComponent, <%= classify(name) %>FormComponent, <%= classify(name) %>SearchComponent, <%= classify(name) %>RemoveComponent, <%= classify(name) %>RemoveDialogComponent],
   imports: [
     CommonModule,
     MaterialModule, 
-    ReactiveFormsModule, FormsModule
+    ReactiveFormsModule, FormsModule, FlexLayoutModule
   ],
   exports: [<%= classify(name) %>ListComponent, <%= classify(name) %>DetailComponent, <%= classify(name) %>FormComponent,  <%= classify(name) %>RemoveComponent],
 
